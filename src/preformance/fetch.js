@@ -18,6 +18,7 @@ function overwriteFetch() {
             reportData.status = data.status;
             reportData.success = data.ok;
             // todo 上报数据
+            lazyReportBatch(reportData);
             return res;
         }).catch((err) => {
             const endTime = Date.now();
@@ -26,6 +27,7 @@ function overwriteFetch() {
             reportData.status = 0;
             reportData.success = false;
             // todo 上报数据
+            lazyReportBatch(reportData);
         });
     }
 }

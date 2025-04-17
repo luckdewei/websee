@@ -4,6 +4,7 @@
 export const originalProto = XMLHttpRequest.prototype;
 export const originalSend = originalProto.send;
 export const originalOpen = originalProto.open;
+import { lazyReportBatch } from '../report';
 
 function overwriteOpenAndSend() {
   originalProto.open = function newOpen(...args) {
@@ -30,6 +31,7 @@ function overwriteOpenAndSend() {
         subType: 'xhr'
       }
       // todo 发送数据
+      lazyReportBatch(reportData);
       
       this.removeEventListener('loadend', onLoaded, true);
     }

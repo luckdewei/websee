@@ -1,3 +1,5 @@
+import { lazyReportBatch } from '../report';
+
 export default function observerLCP() {
   const entryHandler = (list) => {
     if (observer) {
@@ -13,6 +15,7 @@ export default function observerLCP() {
         pageUrl: window.location.href
       }
       // 发送数据 todo
+      lazyReportBatch(reportData);
     }
   
   }

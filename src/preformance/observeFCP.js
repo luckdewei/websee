@@ -1,3 +1,5 @@
+import { lazyReportBatch } from '../report';
+
 export default function observerFCP() {
   const entryHandler = (list) => {
     for(const entry of list.getEntries()) {
@@ -12,6 +14,7 @@ export default function observerFCP() {
           pageUrl: window.location.href
         }
         // 发送数据 todo
+        lazyReportBatch(reportData);
       }
     }
   }

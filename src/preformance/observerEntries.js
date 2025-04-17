@@ -1,3 +1,5 @@
+import { lazyReportBatch } from '../report';
+
 // 前端静态资源收集
 export default function observerEntries() {
   if (document.readyState === 'complete') {
@@ -36,6 +38,8 @@ export function observerEvent() {
         resourceSize: entry.decodedBodySize, // 资源解压后的大小
         startTime: performance.now(),
       };
+
+      lazyReportBatch(reportData);
     }
   }
 
