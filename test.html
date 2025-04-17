@@ -6,21 +6,8 @@
   <title>Document</title>
 </head>
 <body>
-  <button onclick="location.href='./pre.html'">pre</button>
-  <button onclick="location.href='./next.html'">next</button>
 </body>
 </html>
 
 <script>
-  window.addEventListener('pageshow', function (event) {
-  requestAnimationFrame(() => {
-    console.log('load', this.load);
-    
-    ['load', 'DOMContentLoaded'].forEach((type) => {
-      console.log('event', event);
-      
-      console.log('time===', performance.now() - event.timeStamp);
-    });
-  }, true);
-});
 </script>
