@@ -19,6 +19,7 @@ export default function error() {
           pahts: e.path, // 具体的资源路径
         };
         // todo 发送错误信息
+        lazyReportBatch(reportData);
       }
     },
     true

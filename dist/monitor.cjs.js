@@ -4,7 +4,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 
 // config 默认值
 var config = {
-  url: 'http://127.0.0.1:8080/api',
+  url: 'http://127.0.0.1:9800/reportData',
   projectName: 'eyesdk',
   appId: '123456',
   userId: '123456',
@@ -134,7 +134,7 @@ function _unsupportedIterableToArray(r, a) {
 }
 
 function deepCopy(object) {
-  var map = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : WeakMap();
+  var map = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new WeakMap();
   // 如果是基本数据类型 直接返回
   if (!object || _typeof(object) !== 'object') return object;
   // 考虑循环引用
@@ -189,7 +189,7 @@ function report(data) {
 function lazyReportBatch(data) {
   addCache(data);
   var dataCache = getCache();
-  console.error('dataCache', dataCache);
+  console.log('dataCache', dataCache);
   if (dataCache.length && dataCache.length > config.batchSize) {
     report(dataCache);
     clearCache();
@@ -529,12 +529,17 @@ function error() {
     if (!target) return;
     // 处理静态资源错误
     if (target.src || target.href) {
-      target.src || target.href;
-      ({
+      var url = target.src || target.href;
+      var reportData = {
+        type: 'error',
+        subType: 'resource',
+        url: url,
         html: target.outerHTML,
+        pageUrl: window.location.href,
         pahts: e.path // 具体的资源路径
-      });
+      };
       // todo 发送错误信息
+      lazyReportBatch(reportData);
     }
   }, true);
   // 捕获js错误
@@ -691,9 +696,9 @@ function errorBoundary(err, info) {
 }
 function init(options) {
   setConfig(options);
-  // performance();
-  // error();
-  // behavior();
+  performance$1();
+  error();
+  behavior();
 }
 var webSeeSDK = {
   install: install,

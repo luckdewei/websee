@@ -1,6 +1,6 @@
 // config 默认值
 const config = {
-  url: 'http://127.0.0.1:8080/api',
+  url: 'http://127.0.0.1:9800/reportData',
   projectName: 'eyesdk',
   appId: '123456',
   userId: '123456',

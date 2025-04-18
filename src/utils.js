@@ -1,4 +1,4 @@
-export function deepCopy(object, map = WeakMap()) {
+export function deepCopy(object, map =new WeakMap()) {
   // 如果是基本数据类型 直接返回
   if (!object || typeof object !== 'object') return object
   // 考虑循环引用
