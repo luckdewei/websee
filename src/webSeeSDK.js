@@ -1,4 +1,4 @@
-import performance from './performance/index';
+import performance from './preformance/index';
 import error from './error/index';
 import behavior from './behavior/index';
 import { setConfig } from './config';
